@@ -79,7 +79,9 @@ std::vector<Entry> parse_ssh_config() {
         std::string keyword;
         iss >> keyword;
 
-        if (keyword == "Host") {
+        std::transform(keyword.begin(), keyword.end(), keyword.begin(), [](unsigned char c){ return std::tolower(c); });
+
+        if (keyword == "host") {
             if (inHostBlock) {
                 // Save the current entry before starting a new one
                 entries.push_back(currentEntry);
@@ -88,9 +90,9 @@ std::vector<Entry> parse_ssh_config() {
             iss >> currentEntry.name;
             currentEntry.hostname.clear();
             currentEntry.user.clear();
-        } else if (keyword == "Hostname") {
+        } else if (keyword == "hostname") {
             iss >> currentEntry.hostname;
-        } else if (keyword == "User") {
+        } else if (keyword == "user") {
             iss >> currentEntry.user;
         }
     }
