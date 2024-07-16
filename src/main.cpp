@@ -51,10 +51,21 @@ WINDOW* draw_menu(WINDOW* win, int start_y, int start_x, int highlight, std::vec
     return win;
 }
 
+std::string join_path(const std::vector<std::string>& args) {
+    std::string path = "";
+    for (auto i = args.begin(); i != args.end(); i++) {
+        path += *i;
+        if (std::next(i) != args.end()) {
+            path += SEPARATOR;
+        }
+    }
+    return path;
+}
+
 std::vector<Entry> parse_ssh_config() {
     std::string home = std::getenv("HOME");
 
-    std::string file = home+SEPARATOR+".ssh"+SEPARATOR+"config";
+    std::string file = join_path({home, ".ssh", "config"});
 
     std::ifstream infile(file);
 
