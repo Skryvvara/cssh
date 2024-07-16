@@ -9,6 +9,10 @@
 
 #define SEPARATOR std::filesystem::path::preferred_separator
 
+#ifndef VERSION
+#define VERSION "0.0.0" // this is set during the compilation step
+#endif
+
 struct Entry {
     std::string name;
     std::string hostname;
@@ -115,6 +119,8 @@ std::vector<Entry> parse_ssh_config() {
 }
 
 int main() {
+    std::string version = VERSION;
+
     while (true) {
         initscr(); // Initialize ncurses
         cbreak(); // Line buffering disabled
@@ -140,6 +146,14 @@ int main() {
         // Create a window for the menu
         WINDOW* menu_win = newwin(table_height, table_width, start_y, start_x);
         box(menu_win, 0, 0); // Draw a box around the window
+
+        // Define the title and calculate its position
+        const std::string title = "CSSH - " + version;
+        int title_pos = (max_x - strlen(title.c_str())) / 2;
+
+        // Print the title in the middle of the top row
+        mvprintw(start_y-1, title_pos, "%s", title.c_str());
+
         refresh();
 
         while (true) {
