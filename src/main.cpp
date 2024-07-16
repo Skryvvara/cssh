@@ -51,7 +51,7 @@ WINDOW* draw_menu(WINDOW* win, int start_y, int start_x, int highlight, std::vec
     return win;
 }
 
-int main() {
+std::vector<Entry> parse_ssh_config() {
     std::string home = std::getenv("HOME");
 
     std::string file = home+SEPERATOR+".ssh"+SEPERATOR+"config";
@@ -100,11 +100,17 @@ int main() {
         entries.push_back(currentEntry);
     }
 
+    return entries;
+}
+
+int main() {
     while (true) {
         initscr(); // Initialize ncurses
         cbreak(); // Line buffering disabled
         noecho(); // Don't echo while we do getch
         keypad(stdscr, TRUE); // Enable function keys
+
+        std::vector<Entry> entries = parse_ssh_config();
 
         int highlight = 0;
         int choice = -1; // -1 means no choice made yet
