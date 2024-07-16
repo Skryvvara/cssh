@@ -7,7 +7,7 @@
 #include <fstream>
 #include <sstream>
 
-#define SEPERATOR std::filesystem::path::preferred_separator
+#define SEPARATOR std::filesystem::path::preferred_separator
 
 struct Entry {
     std::string name;
@@ -54,7 +54,7 @@ WINDOW* draw_menu(WINDOW* win, int start_y, int start_x, int highlight, std::vec
 std::vector<Entry> parse_ssh_config() {
     std::string home = std::getenv("HOME");
 
-    std::string file = home+SEPERATOR+".ssh"+SEPERATOR+"config";
+    std::string file = home+SEPARATOR+".ssh"+SEPARATOR+"config";
 
     std::cout << file;
 
