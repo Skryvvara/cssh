@@ -49,4 +49,4 @@ make
 
 ## License
 
-Gossht is licensed under the [MIT License](https://opensource.org/license/mit).
+CSSH is licensed under the [MIT License](https://opensource.org/license/mit).
