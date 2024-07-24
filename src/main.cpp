@@ -2,7 +2,7 @@
 #include <ncurses.h>
 #include <cstdlib>
 #include <vector>
-#include <string>
+#include <cstring>
 #include <iostream>
 #include <fstream>
 #include <sstream>
