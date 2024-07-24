@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <ncurses.h>
+#include <algorithm>
 #include <cstdlib>
 #include <vector>
 #include <cstring>
